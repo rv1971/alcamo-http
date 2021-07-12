@@ -8,7 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 /**
  * @brief Enhanced emitter
  *
- * Largely inspired by Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
+ * Largely inspired by Laminas::HttpHandlerRunner::Emitter::SapiEmitter;
  * enhancements include:
  * - A Content-Length header can be generated.
  * - If the body implements EmitInterface, the body's emit() method is used
