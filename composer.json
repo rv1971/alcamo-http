@@ -8,9 +8,9 @@
         "guzzlehttp/psr7": "^1",
         "laminas/laminas-diactoros": "^2.5",
         "laminas/laminas-httphandlerrunner": "^1.3",
-        "alcamo/core": "^0.1",
-        "alcamo/process": "^0.1",
-        "alcamo/rdfa": "^0.1"
+        "alcamo/core": "^0.2",
+        "alcamo/process": "^0.2",
+        "alcamo/rdfa": "^0.2"
     },
     "autoload": {
 	"psr-4": {
