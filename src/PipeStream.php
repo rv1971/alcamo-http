@@ -46,7 +46,7 @@ class PipeStream extends Stream implements EmitInterface
     {
         if (!$this->resource) {
             /** @throw alcamo::exception::Closed if already closed. */
-            throw new Closed(get_class($this));
+            throw new Closed();
         }
 
         $count = fpassthru($this->resource);

@@ -46,7 +46,7 @@ class PipeStreamTest extends TestCase
 
         $this->expectException(Closed::class);
         $this->expectExceptionMessage(
-            'Attempt to use closed ' . PipeStream::class
+            'Attempt to use closed object <alcamo\http\PipeStream>""'
         );
 
         $stream->emit();
