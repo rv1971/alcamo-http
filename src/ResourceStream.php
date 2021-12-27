@@ -18,6 +18,10 @@ class ResourceStream extends Stream implements EmitInterface
             throw new Closed();
         }
 
+        if (stream_get_meta_data($this->resource)['seekable']) {
+            fseek($this->resource, 0);
+        }
+
         $count = fpassthru($this->resource);
 
         return $count === false ? null : $count;
