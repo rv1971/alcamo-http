@@ -2,16 +2,14 @@
 
 namespace alcamo\http;
 
-use alcamo\exception\Closed;
 use alcamo\process\Process;
-use Laminas\Diactoros\Stream;
 
 /**
  * @brief Stream based on stdout of a process
  *
  * @date Last reviewed 2021-06-21
  */
-class PipeStream extends Stream implements EmitInterface
+class PipeStream extends ResourceStream
 {
     private $process_; ///< Process
     private $status_;  ///< ?int
@@ -39,18 +37,5 @@ class PipeStream extends Stream implements EmitInterface
 
         $this->detach();
         $this->status_ = $this->process_->close();
-    }
-
-    /// Emit complete output and return number of bytes emitted
-    public function emit(): ?int
-    {
-        if (!$this->resource) {
-            /** @throw alcamo::exception::Closed if already closed. */
-            throw new Closed();
-        }
-
-        $count = fpassthru($this->resource);
-
-        return $count === false ? null : $count;
     }
 }
