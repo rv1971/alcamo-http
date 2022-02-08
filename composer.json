@@ -11,7 +11,7 @@
         "alcamo/core": "^0.4",
         "alcamo/exception": "^0.1",
         "alcamo/process": "^0.4",
-        "alcamo/rdfa": "^0.4"
+        "alcamo/rdfa": "^0.5"
     },
     "autoload": {
 	"psr-4": {
