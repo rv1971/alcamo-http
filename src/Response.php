@@ -54,7 +54,7 @@ class Response extends BaseResponse
     ) {
         $this->rdfaData_ = $rdfaData ?? new RdfaData([]);
 
-        /** Creae HTTP headers from $rdfaData. */
+        /** Create HTTP headers from $rdfaData. */
         parent::__construct(
             $body ?? 'php://memory',
             $status ?? 200,
