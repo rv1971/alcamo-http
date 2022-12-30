@@ -10,7 +10,7 @@
         "laminas/laminas-httphandlerrunner": "^1.3",
         "laminas/laminas-zendframework-bridge": "1.4.1",
         "alcamo/process": "^0.4",
-        "alcamo/rdfa": "^0.6",
+        "alcamo/rdfa": "^0.7",
         "alcamo/sanitize": "^0.1"
     },
     "autoload": {
