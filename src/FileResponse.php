@@ -20,7 +20,7 @@ class FileResponse extends Response
         $autoRdfaData = RdfaData::newFromIterable(
             [
                 'dc:format' => MediaType::newFromFilename($path),
-                'header:content-length' => filesize($path)
+                'http:content-length' => filesize($path)
             ]
         );
 

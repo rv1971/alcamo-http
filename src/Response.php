@@ -3,16 +3,14 @@
 namespace alcamo\http;
 
 use Laminas\Diactoros\Response as BaseResponse;
-use alcamo\rdfa\{HasRdfaDataTrait, RdfaData};
+use alcamo\rdfa\RdfaData;
 
 /**
  * @brief Enhanced response
- *
- * @date Last reviewed 2021-06-21
  */
 class Response extends BaseResponse
 {
-    use HasRdfaDataTrait;
+    private $rdfaData_; ///< RdfaData
 
     public const DEFAULT_RDFA_DATA = [ 'dc:format' => 'text/plain' ];
 
@@ -58,8 +56,13 @@ class Response extends BaseResponse
         parent::__construct(
             $body ?? 'php://memory',
             $status ?? 200,
-            $rdfaData->toHttpHeaders()
+            (new Rdfa2Headers())->createHeaders($this->rdfaData_)
         );
+    }
+
+    public function getRdfaData(): RdfaData
+    {
+        return $this->rdfaData_;
     }
 
     /// Emit using SapiEmitter
