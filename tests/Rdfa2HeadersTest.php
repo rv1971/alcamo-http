@@ -64,4 +64,46 @@ class Rdfa2HeadersTest extends TestCase
             ]
         ];
     }
+
+    /**
+     * @dataProvider createHeadersProvider
+     */
+    public function testCreateHeaders($inputData, $expectedHeaders): void
+    {
+        $rdfaData = RdfaData::newFromIterable($inputData);
+
+        $rdfa2Headers = new Rdfa2Headers();
+
+        $this->assertSame(
+            $expectedHeaders,
+            $rdfa2Headers->createHeaders($rdfaData)
+        );
+    }
+
+    public function createHeadersProvider(): array
+    {
+        return [
+            [
+                [
+                    'dc:format' => 'application/pdf',
+                    'dc:language' => 'ln-CF',
+                    'dc:modified' => '2023-01-20Z',
+                    'dc:source' => 'https://www.example.org/about',
+                    'dc:title' => 'About',
+                    'http:cache-control' => 'public',
+                    'http:content-disposition' => 'about.pdf',
+                    'http:content-length' => '12345',
+                ],
+                [
+                    'Content-Type' => [ 'application/pdf' ],
+                    'Content-Language' => [ 'ln-CF' ],
+                    'Last-Modified' => [ 'Fri, 20 Jan 2023 00:00:00 +0000' ],
+                    'Link' => [ '<https://www.example.org/about>; rel="canonical"' ],
+                    'Cache-Control' => [ 'public' ],
+                    'Content-Disposition' => [ 'attachment; filename="about.pdf"' ],
+                    'Content-Length' => [ '12345' ]
+                ]
+            ]
+        ];
+    }
 }

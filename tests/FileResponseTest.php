@@ -2,8 +2,7 @@
 
 namespace alcamo\http;
 
-use alcamo\iana\MediaType;
-use alcamo\rdfa\RdfaData;
+use alcamo\rdfa\{MediaType, RdfaData};
 use PHPUnit\Framework\TestCase;
 
 class FileResponseTest extends TestCase
@@ -19,7 +18,7 @@ class FileResponseTest extends TestCase
 
         $this->assertSame(
             filesize(__FILE__),
-            (int)(string)$response->getRdfaData()['header:content-length']
+            (int)(string)$response->getRdfaData()['http:content-length']
         );
 
         $this->assertSame(
@@ -39,7 +38,7 @@ class FileResponseTest extends TestCase
 
         $this->assertSame(
             filesize(__FILE__),
-            (int)(string)$response->getRdfaData()['header:content-length']
+            (int)(string)$response->getRdfaData()['http:content-length']
         );
 
         $this->assertSame(

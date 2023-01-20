@@ -2,8 +2,7 @@
 
 namespace alcamo\http;
 
-use alcamo\iana\MediaType;
-use alcamo\rdfa\RdfaData;
+use alcamo\rdfa\{MediaType, RdfaData};
 
 /**
  * @brief Send a file as response
