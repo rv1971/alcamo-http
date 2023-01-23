@@ -17,7 +17,7 @@ use alcamo\rdfa\{
 
 class Rdfa2Headers
 {
-    public const PROP_URI2HEADER = [
+    public const PROP_URI_TO_HEADER = [
         DcFormat::PROP_URI               => 'Content-Type',
         DcLanguage::PROP_URI             => 'Content-Language',
         DcModified::PROP_URI             => 'Last-Modified',
@@ -28,7 +28,7 @@ class Rdfa2Headers
         HttpExpires::PROP_URI            => 'Expires'
     ];
 
-    public const PROP_URI2FORMATTER = [
+    public const PROP_URI_TO_FORMATTER = [
         DcModified::PROP_URI             => 'formatDcModified',
         DcSource::PROP_URI               => 'formatDcSource',
         HttpContentDisposition::PROP_URI => 'formatHttpContentDisposition',
@@ -40,13 +40,13 @@ class Rdfa2Headers
     {
         $uri = $stmt->getPropUri();
 
-        $header = static::PROP_URI2HEADER[$uri] ?? null;
+        $header = static::PROP_URI_TO_HEADER[$uri] ?? null;
 
         if (!isset($header)) {
             return null;
         }
 
-        $formatter = static::PROP_URI2FORMATTER[$uri] ?? null;
+        $formatter = static::PROP_URI_TO_FORMATTER[$uri] ?? null;
 
         return [
             $header,
