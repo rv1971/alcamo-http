@@ -57,23 +57,23 @@ class ResponseTest extends TestCase
                 null,
                 null,
                 'Not Found',
-                [ 'dc:format' => 'text/plain' ]
+                [ [ 'dc:format', 'text/plain' ] ]
             ],
             'text-and-array' => [
                 200,
                 'Lorem ipsum',
-                [ 'dc:format' => 'text/plain; charset=us-ascii' ],
+                [ [ 'dc:format', 'text/plain; charset=us-ascii' ] ],
                 'Lorem ipsum',
-                [ 'dc:format' => 'text/plain; charset="us-ascii"' ],
+                [ [ 'dc:format', 'text/plain; charset=us-ascii' ] ]
             ],
             'text-and-rdfa' => [
                 200,
                 'Lorem ipsum',
                 RdfaData::newFromIterable(
-                    [ 'dc:format' => 'text/plain; charset=us-ascii' ]
+                    [ [ 'dc:format', 'text/plain; charset=us-ascii' ] ]
                 ),
                 'Lorem ipsum',
-                [ 'dc:format' => 'text/plain; charset="us-ascii"' ],
+                [ [ 'dc:format', 'text/plain; charset="us-ascii"' ] ]
             ]
         ];
     }

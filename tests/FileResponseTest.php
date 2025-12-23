@@ -28,7 +28,7 @@ class FileResponseTest extends TestCase
 
         $response = FileResponse::newFromPath(
             __FILE__,
-            [ 'dc:format' => 'application/octet-stream' ]
+            [ [ 'dc:format', 'application/octet-stream' ] ]
         );
 
         $this->assertSame(

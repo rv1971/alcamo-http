@@ -12,7 +12,7 @@ class Response extends BaseResponse
 {
     private $rdfaData_; ///< RdfaData
 
-    public const DEFAULT_RDFA_DATA = [ 'dc:format' => 'text/plain' ];
+    public const DEFAULT_RDFA_DATA = [ [ 'dc:format', 'text/plain' ] ];
 
     public static function newFromStatusAndText(
         int $status,

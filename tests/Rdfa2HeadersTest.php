@@ -85,14 +85,14 @@ class Rdfa2HeadersTest extends TestCase
         return [
             [
                 [
-                    'dc:format' => 'application/pdf',
-                    'dc:language' => 'ln-CF',
-                    'dc:modified' => '2023-01-20Z',
-                    'dc:source' => 'https://www.example.org/about',
-                    'dc:title' => 'About',
-                    'http:cache-control' => 'public',
-                    'http:content-disposition' => 'about.pdf',
-                    'http:content-length' => '12345',
+                    [ 'dc:format', 'application/pdf' ],
+                    [ 'dc:language', 'ln-CF' ],
+                    [ 'dc:modified', '2023-01-20Z' ],
+                    [ 'dc:source', 'https://www.example.org/about' ],
+                    [ 'dc:title', 'About' ],
+                    [ 'http:cache-control', 'public' ],
+                    [ 'http:content-disposition', 'about.pdf' ],
+                    [ 'http:content-length', '12345' ],
                 ],
                 [
                     'Content-Type' => [ 'application/pdf' ],
