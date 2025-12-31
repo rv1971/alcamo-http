@@ -94,7 +94,7 @@ class Rdfa2Headers
         $headers = [];
 
         foreach ($rdfaData as $stmts) {
-            foreach (is_array($stmts) ? $stmts : [ $stmts ] as $stmt) {
+            foreach ($stmts as $stmt) {
                 [ $name, $value ] = $this->stmt2Pair($stmt);
 
                 if (!isset($name)) {

@@ -18,12 +18,12 @@ class FileResponseTest extends TestCase
 
         $this->assertSame(
             filesize(__FILE__),
-            (int)(string)$response->getRdfaData()['http:content-length']
+            (int)(string)$response->getRdfaData()['http:content-length']->first()
         );
 
         $this->assertSame(
             (string)MediaType::newFromFilename(__FILE__),
-            (string)$response->getRdfaData()['dc:format']
+            (string)$response->getRdfaData()['dc:format']->first()
         );
 
         $response = FileResponse::newFromPath(
@@ -38,12 +38,12 @@ class FileResponseTest extends TestCase
 
         $this->assertSame(
             filesize(__FILE__),
-            (int)(string)$response->getRdfaData()['http:content-length']
+            (int)(string)$response->getRdfaData()['http:content-length']->first()
         );
 
         $this->assertSame(
             'application/octet-stream',
-            (string)$response->getRdfaData()['dc:format']
+            (string)$response->getRdfaData()['dc:format']->first()
         );
     }
 }
