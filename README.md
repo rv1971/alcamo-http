@@ -21,7 +21,7 @@ with `Laminas\Diactoros\Response` because is sends the file via
 use alcamo\http\{PipeStream, Response};
 use alcamo\process\OutputProcess;
 
-$stream = new PipeStream(new OutputProcess('convert foo.png jpeg:-'));
+$stream = new PipeStream(new OutputProcess('/usr/bin/convert foo.png jpeg:-'));
 
 $response = new Response(
     [ [ 'dc:format', 'image/jpeg' ] ],
@@ -34,9 +34,9 @@ $response->emit();
 This sends an HTTP response with `Content-Type` header. Again, it may
 be more efficient than doing the same thing simply with
 `Laminas\Diactoros\Response` because is sends the file via
-`fpassthru()`, without need to keep the entire file content in memory.
+`fpassthru()`, without need to keep the entire data in memory.
 
-The exmaple also illustrates a possible use of the Response class,
+The example also illustrates a possible use of the `Response` class,
 giving RDFa metadata which is automatically converted into HTTP
 headers.
 
@@ -52,4 +52,4 @@ $response->emit();
 
 This will send an HTTP response with `Content-Type: text/plain` and
 `Content-Length` header, with status code 403 and the text
-'Forbidden'.
+"Forbidden".
