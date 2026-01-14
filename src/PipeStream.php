@@ -7,7 +7,7 @@ use alcamo\process\Process;
 /**
  * @brief Stream based on stdout of a process
  *
- * @date Last reviewed 2021-06-21
+ * @date Last reviewed 2026-01-14
  */
 class PipeStream extends ResourceStream
 {
@@ -36,6 +36,7 @@ class PipeStream extends ResourceStream
         }
 
         $this->detach();
+
         $this->status_ = $this->process_->close();
     }
 }

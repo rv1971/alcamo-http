@@ -7,10 +7,17 @@ use Laminas\Diactoros\Stream;
 
 /**
  * @brief Stream based on a resource
+ *
+ * @date Last reviewed 2026-01-14
  */
-class ResourceStream extends Stream implements EmitInterface
+class ResourceStream extends Stream implements HavingEmitMethodInterface
 {
-    /// Emit complete output and return number of bytes emitted
+    /**
+     * @copydoc alcamo:http::HavingEmitMethodInterface::emit()
+     *
+     * Use fpassthru(), which may be more efficient than first getting the
+     * complete stream content and then echoing it to the output.
+     */
     public function emit(): ?int
     {
         if (!$this->resource) {
@@ -18,8 +25,8 @@ class ResourceStream extends Stream implements EmitInterface
             throw new Closed();
         }
 
-        if (stream_get_meta_data($this->resource)['seekable']) {
-            fseek($this->resource, 0);
+        if ($this->isSeekable()) {
+            $this->seek(0);
         }
 
         $count = fpassthru($this->resource);

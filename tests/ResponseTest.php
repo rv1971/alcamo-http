@@ -7,14 +7,12 @@ use alcamo\rdfa\RdfaData;
 
 class ResponseTest extends TestCase
 {
-    public function testConstruct()
+    public function testConstruct(): void
     {
         $bodyText = '{ "msg": "Hello, World!" }';
 
         $rdfaData = RdfaData::newFromIterable(
-            [
-                'dc:format' => 'application/json'
-            ]
+            [ 'dc:format', 'application/json' ]
         );
 
         $response = new Response($rdfaData);
@@ -37,7 +35,7 @@ class ResponseTest extends TestCase
         $rdfaData,
         $expectedText,
         $expectedRdfaData
-    ) {
+    ): void {
         $response = Response::newFromStatusAndText($status, $text, $rdfaData);
 
         $this->assertSame($status, $response->getStatusCode());
@@ -49,7 +47,7 @@ class ResponseTest extends TestCase
         );
     }
 
-    public function newFromStatusAndTextProvider()
+    public function newFromStatusAndTextProvider(): array
     {
         return [
             'simple' => [
@@ -81,25 +79,23 @@ class ResponseTest extends TestCase
     /**
      * @dataProvider emitProvider
      */
-    public function testEmit($type, $text, $sendContentLength, $expectedOutput)
+    public function testEmit($type, $text, $expectedOutput): void
     {
         exec(
             'PHPUNIT_COMPOSER_INSTALL="' . PHPUNIT_COMPOSER_INSTALL . '" php '
             . __DIR__ . DIRECTORY_SEPARATOR
-            . "ResponseEmitAux.php $type '$text' $sendContentLength",
+            . "ResponseEmitAux.php $type '$text'",
             $output
         );
 
         $this->assertSame($expectedOutput, implode('', $output));
     }
 
-    public function emitProvider()
+    public function emitProvider(): array
     {
         return [
-            'text-without-content-length' => [ 'text', 'foo', 0, 'foo' ],
-            'text-with-content-length' => [ 'text', 'foo', 1, 'foo' ],
-            'pipe-without-content-length' => [ 'pipe', 'echo foo', 0, 'foo' ],
-            'pipe-with-content-length' => [ 'pipe', 'echo foo', 1, 'foo' ]
+            'text' => [ 'text', 'foo', 'foo' ],
+            'pipe' => [ 'pipe', 'echo foo', 'foo' ]
         ];
     }
 }

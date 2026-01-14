@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class FileResponseTest extends TestCase
 {
-    public function testNewFromPath()
+    public function testNewFromPath(): void
     {
         $response = FileResponse::newFromPath(__FILE__);
 
@@ -18,12 +18,13 @@ class FileResponseTest extends TestCase
 
         $this->assertSame(
             filesize(__FILE__),
-            (int)(string)$response->getRdfaData()['http:content-length']->first()
+            (int)(string)$response->getRdfaData()['http:content-length']
+                ->first()
         );
 
-        $this->assertSame(
-            (string)MediaType::newFromFilename(__FILE__),
-            (string)$response->getRdfaData()['dc:format']->first()
+        $this->assertEquals(
+            MediaType::newFromFilename(__FILE__),
+            $response->getRdfaData()['dc:format']->first()->getObject()
         );
 
         $response = FileResponse::newFromPath(

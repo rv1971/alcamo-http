@@ -6,30 +6,38 @@ use alcamo\rdfa\{MediaType, RdfaData};
 
 /**
  * @brief Send a file as response
+ *
+ * @date Last reviewed 2026-01-14
  */
 class FileResponse extends Response
 {
     /**
      * @brief Create from path
      *
+     * @param $path Path ot file to send.
+     *
+     * @param RdfaData|array $rdfaData RdfaData onject or iterable of pairs
+     * consisting of a property CURIE and object data.
+     *
      * Automatically generates `Content-Length` and `Content-Type` headers.
      */
     public static function newFromPath(string $path, $rdfaData = null): Response
     {
-        $autoRdfaData = RdfaData::newFromIterable(
+        $defaultRdfaData = RdfaData::newFromIterable(
             [
                 [ 'dc:format', MediaType::newFromFilename($path) ],
                 [ 'http:content-length', filesize($path) ]
             ]
         );
 
-        if ($rdfaData instanceof RdfaData) {
-            $rdfaData = $autoRdfaData->replace($rdfaData);
-        } elseif (isset($rdfaData)) {
-            $rdfaData =
-                $autoRdfaData->replace(RdfaData::newFromIterable($rdfaData));
+        if (isset($rdfaData)) {
+            $rdfaData = $defaultRdfaData->replace(
+                $rdfaData instanceof RdfaData
+                    ? $rdfaData
+                    : RdfaData::newFromIterable($rdfaData)
+            );
         } else {
-            $rdfaData = $autoRdfaData;
+            $rdfaData = $defaultRdfaData;
         }
 
         return new self(

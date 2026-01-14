@@ -7,7 +7,7 @@ use alcamo\rdfa\RdfaData;
 
 require getenv('PHPUNIT_COMPOSER_INSTALL');
 
-[ , $type, $text, $sendContentLength ] = $argv;
+[ , $type, $text ] = $argv;
 
 $emitter = new SapiEmitter();
 
@@ -25,4 +25,4 @@ switch ($type) {
         break;
 }
 
-$emitter->emit($response, $sendContentLength);
+$emitter->emit($response);

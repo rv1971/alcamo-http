@@ -7,7 +7,7 @@ use alcamo\rdfa\RdfaData;
 
 require getenv('PHPUNIT_COMPOSER_INSTALL');
 
-[ , $type, $text, $sendContentLength ] = $argv;
+[ , $type, $text ] = $argv;
 
 switch ($type) {
     case 'text':
@@ -23,4 +23,4 @@ switch ($type) {
         break;
 }
 
-$response->emit($sendContentLength);
+$response->emit();

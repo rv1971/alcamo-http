@@ -12,9 +12,9 @@ namespace alcamo\http;
 /**
  * @brief Class having an emit() method
  *
- * @date Last reviewed 2021-06-17
+ * @date Last reviewed 2026-01-14
  */
-interface EmitInterface
+interface HavingEmitMethodInterface
 {
     /**
      * @brief Write object content to output

@@ -15,8 +15,14 @@ use alcamo\rdfa\{
         StmtInterface
 };
 
+/**
+ * @brief Create HTTP headers from RDFa data
+ *
+ * @date Last reviewed 2026-01-14
+ */
 class Rdfa2Headers
 {
+    /// Map of RDFa property URIs to HTTP header names
     public const PROP_URI_TO_HEADER = [
         DcFormat::PROP_URI               => 'Content-Type',
         DcLanguage::PROP_URI             => 'Content-Language',
@@ -28,6 +34,7 @@ class Rdfa2Headers
         HttpExpires::PROP_URI            => 'Expires'
     ];
 
+    /// Map of RDFa property URIs to methods that format the property object
     public const PROP_URI_TO_FORMATTER = [
         DcModified::PROP_URI             => 'formatDcModified',
         DcSource::PROP_URI               => 'formatDcSource',

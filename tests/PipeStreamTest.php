@@ -11,7 +11,7 @@ class PipeStreamTest extends TestCase
     /**
      * @dataProvider basicsProvider
      */
-    public function testBasics($command, $expectedOutput)
+    public function testBasics($command, $expectedOutput): void
     {
         $stream = new PipeStream(new OutputProcess($command));
 
@@ -25,18 +25,18 @@ class PipeStreamTest extends TestCase
 
         $stream->close();
 
-        $this->assertIsInt($stream->getStatus());
+        $this->assertSame(0, $stream->getStatus());
     }
 
-    public function basicsProvider()
+    public function basicsProvider(): array
     {
         return [
-            [ 'echo foo', "foo\n" ],
-            [ 'echo bar baz qux', "bar baz qux\n" ],
+            [ 'echo foo', 'foo' . PHP_EOL ],
+            [ 'echo bar baz qux', 'bar baz qux' . PHP_EOL ],
         ];
     }
 
-    public function testEmitException()
+    public function testEmitException(): void
     {
         $stream = new PipeStream(new OutputProcess('echo'));
 
