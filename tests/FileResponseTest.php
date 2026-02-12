@@ -2,7 +2,7 @@
 
 namespace alcamo\http;
 
-use alcamo\rdfa\{MediaType, RdfaData};
+use alcamo\rdfa\{MediaType, MediaTypeLiteral, RdfaData};
 use PHPUnit\Framework\TestCase;
 
 class FileResponseTest extends TestCase
@@ -23,7 +23,7 @@ class FileResponseTest extends TestCase
         );
 
         $this->assertEquals(
-            MediaType::newFromFilename(__FILE__),
+            new MediaTypeLiteral(MediaType::newFromFilename(__FILE__)),
             $response->getRdfaData()['dc:format']->first()->getObject()
         );
 
