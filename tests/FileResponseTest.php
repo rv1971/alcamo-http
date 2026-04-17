@@ -2,7 +2,8 @@
 
 namespace alcamo\http;
 
-use alcamo\rdfa\{MediaType, MediaTypeLiteral, RdfaData};
+use alcamo\rdf_literal\{MediaType, MediaTypeLiteral};
+use alcamo\rdfa\RdfaData;
 use PHPUnit\Framework\TestCase;
 
 class FileResponseTest extends TestCase
