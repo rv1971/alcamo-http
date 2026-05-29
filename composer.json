@@ -9,7 +9,7 @@
         "laminas/laminas-diactoros": "^2.14",
         "laminas/laminas-httphandlerrunner": "^2.1",
         "alcamo/process": "^0.5",
-        "alcamo/rdfa": "^0.13"
+        "alcamo/rdfa": "0.13 - 0.15"
     },
     "autoload": {
 	"psr-4": {
